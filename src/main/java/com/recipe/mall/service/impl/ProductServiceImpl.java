@@ -6,6 +6,7 @@ import com.recipe.mall.dao.ProductMapper;
 import com.recipe.mall.pojo.Product;
 import com.recipe.mall.service.ICategoryService;
 import com.recipe.mall.service.IProductService;
+import com.recipe.mall.vo.ProductDetailVo;
 import com.recipe.mall.vo.ProductVo;
 import com.recipe.mall.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
@@ -48,5 +49,15 @@ public class ProductServiceImpl implements IProductService {
         PageInfo pageInfo = new PageInfo(productList);
         pageInfo.setList(productList);
         return ResponseVo.success(pageInfo);
+    }
+
+    @Override
+    public ResponseVo<ProductDetailVo> detail(Integer productId) {
+        Product product = productMapper.selectByPrimaryKey(productId);
+
+        ProductDetailVo productDetailVo = new ProductDetailVo();
+        BeanUtils.copyProperties(product, productDetailVo);
+
+        return ResponseVo.success(productDetailVo);
     }
 }
