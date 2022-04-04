@@ -1,0 +1,18 @@
+package com.recipe.mall.vo;
+
+import lombok.Data;
+
+@Data
+public class ProductVo {
+    private Integer id;
+
+    private Integer categoryId;
+
+    private String name;
+
+    private String subtitle;
+
+    private String mainImage;
+
+    private Integer status;
+}
