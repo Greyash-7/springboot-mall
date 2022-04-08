@@ -2,12 +2,11 @@ package com.recipe.mall.vo;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 @Data
 public class ProductDetailVo {
     private Integer id;
+
+    private String categoryType;
 
     private Integer categoryId;
 
@@ -15,19 +14,19 @@ public class ProductDetailVo {
 
     private String subtitle;
 
+    private String process;
+
     private String mainImage;
 
-    private String subImages;
+    private String comment;
 
     private String detail;
 
-    private BigDecimal price;
+    private String analyse;
 
-    private Integer stock;
+    private String tips;
+
+    private Integer favor;
 
     private Integer status;
-
-    private Date createTime;
-
-    private Date updateTime;
 }

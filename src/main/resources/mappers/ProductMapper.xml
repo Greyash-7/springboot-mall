@@ -3,21 +3,24 @@
 <mapper namespace="com.recipe.mall.dao.ProductMapper">
   <resultMap id="BaseResultMap" type="com.recipe.mall.pojo.Product">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_type" jdbcType="VARCHAR" property="categoryType" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="subtitle" jdbcType="VARCHAR" property="subtitle" />
+    <result column="process" jdbcType="VARCHAR" property="process" />
     <result column="main_image" jdbcType="VARCHAR" property="mainImage" />
-    <result column="sub_images" jdbcType="VARCHAR" property="subImages" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="analyse" jdbcType="VARCHAR" property="analyse" />
+    <result column="tips" jdbcType="VARCHAR" property="tips" />
+    <result column="favor" jdbcType="INTEGER" property="favor" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, status,
-    create_time, update_time
+    id, category_type, category_id, name, subtitle, process, main_image, comment, detail,
+    analyse, tips, favor, status, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -30,14 +33,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.recipe.mall.pojo.Product">
-    insert into mall_product (id, category_id, name,
-      subtitle, main_image, sub_images,
-      detail, price, stock,
+    insert into mall_product (id, category_type, category_id,
+      name, subtitle, process,
+      main_image, comment, detail,
+      analyse, tips, favor,
       status, create_time, update_time
       )
-    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-      #{subtitle,jdbcType=VARCHAR}, #{mainImage,jdbcType=VARCHAR}, #{subImages,jdbcType=VARCHAR},
-      #{detail,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER},
+    values (#{id,jdbcType=INTEGER}, #{categoryType,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER},
+      #{name,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{process,jdbcType=VARCHAR},
+      #{mainImage,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR},
+      #{analyse,jdbcType=VARCHAR}, #{tips,jdbcType=VARCHAR}, #{favor,jdbcType=INTEGER},
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -46,6 +51,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="categoryType != null">
+        category_type,
       </if>
       <if test="categoryId != null">
         category_id,
@@ -56,20 +64,26 @@
       <if test="subtitle != null">
         subtitle,
       </if>
+      <if test="process != null">
+        process,
+      </if>
       <if test="mainImage != null">
         main_image,
       </if>
-      <if test="subImages != null">
-        sub_images,
+      <if test="comment != null">
+        comment,
       </if>
       <if test="detail != null">
         detail,
       </if>
-      <if test="price != null">
-        price,
+      <if test="analyse != null">
+        analyse,
       </if>
-      <if test="stock != null">
-        stock,
+      <if test="tips != null">
+        tips,
+      </if>
+      <if test="favor != null">
+        favor,
       </if>
       <if test="status != null">
         status,
@@ -85,6 +99,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=VARCHAR},
+      </if>
       <if test="categoryId != null">
         #{categoryId,jdbcType=INTEGER},
       </if>
@@ -94,20 +111,26 @@
       <if test="subtitle != null">
         #{subtitle,jdbcType=VARCHAR},
       </if>
+      <if test="process != null">
+        #{process,jdbcType=VARCHAR},
+      </if>
       <if test="mainImage != null">
         #{mainImage,jdbcType=VARCHAR},
       </if>
-      <if test="subImages != null">
-        #{subImages,jdbcType=VARCHAR},
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
       </if>
       <if test="detail != null">
         #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
+      <if test="analyse != null">
+        #{analyse,jdbcType=VARCHAR},
       </if>
-      <if test="stock != null">
-        #{stock,jdbcType=INTEGER},
+      <if test="tips != null">
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="favor != null">
+        #{favor,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -123,6 +146,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.recipe.mall.pojo.Product">
     update mall_product
     <set>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=VARCHAR},
+      </if>
       <if test="categoryId != null">
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
@@ -132,20 +158,26 @@
       <if test="subtitle != null">
         subtitle = #{subtitle,jdbcType=VARCHAR},
       </if>
+      <if test="process != null">
+        process = #{process,jdbcType=VARCHAR},
+      </if>
       <if test="mainImage != null">
         main_image = #{mainImage,jdbcType=VARCHAR},
       </if>
-      <if test="subImages != null">
-        sub_images = #{subImages,jdbcType=VARCHAR},
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="detail != null">
         detail = #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
+      <if test="analyse != null">
+        analyse = #{analyse,jdbcType=VARCHAR},
       </if>
-      <if test="stock != null">
-        stock = #{stock,jdbcType=INTEGER},
+      <if test="tips != null">
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="favor != null">
+        favor = #{favor,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -161,14 +193,17 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.recipe.mall.pojo.Product">
     update mall_product
-    set category_id = #{categoryId,jdbcType=INTEGER},
+    set category_type = #{categoryType,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       subtitle = #{subtitle,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR},
       main_image = #{mainImage,jdbcType=VARCHAR},
-      sub_images = #{subImages,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
-      stock = #{stock,jdbcType=INTEGER},
+      analyse = #{analyse,jdbcType=VARCHAR},
+      tips = #{tips,jdbcType=VARCHAR},
+      favor = #{favor,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
@@ -178,12 +213,12 @@
     select
     <include refid="Base_Column_List" />
     from mall_product
-    where status = 1
+    where status = 1 and main_image is not NULL
     <if test="categoryIdSet.size() > 0">
       and category_id in
-        <foreach collection="categoryIdSet" item="item" index="index" open="(" separator="," close=")">
-          #{item}
-        </foreach>
+      <foreach collection="categoryIdSet" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
     </if>
   </select>
 </mapper>
