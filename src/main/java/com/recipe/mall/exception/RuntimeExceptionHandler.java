@@ -1,12 +1,13 @@
 package com.recipe.mall.exception;
 
 import com.recipe.mall.vo.ResponseVo;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static com.recipe.mall.enums.ResponseEnum.ERROR;
-import static com.recipe.mall.enums.ResponseEnum.NEED_LOGIN;
+import static com.recipe.mall.enums.ResponseEnum.*;
 
 @ControllerAdvice
 public class RuntimeExceptionHandler {
@@ -23,7 +24,12 @@ public class RuntimeExceptionHandler {
         return ResponseVo.error(NEED_LOGIN);
     }
 
-
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public ResponseVo notValidExceptionHandle(MethodArgumentNotValidException e) {
+        BindingResult bindingResult = e.getBindingResult();
+        return ResponseVo.error(PARAM_ERROR, bindingResult.getFieldError().getField()+" "+bindingResult.getFieldError().getDefaultMessage());
+    }
 
 
 }

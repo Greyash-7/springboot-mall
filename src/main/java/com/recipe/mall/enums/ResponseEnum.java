@@ -20,6 +20,9 @@ public enum ResponseEnum {
 
     USERNAME_OR_PASSWORD_ERROR(11,"用户名或密码错误"),
 
+    PRODUCT_NOT_EXIST(13, "食谱不存在"),
+
+    CART_PRODUCT_NOT_EXIST(15, "收藏食谱不存在"),
     ;
 
     Integer code;
