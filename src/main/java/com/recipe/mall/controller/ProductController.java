@@ -22,8 +22,25 @@ public class ProductController {
         return iProductService.list(categoryId, pageNum, pageSize);
     }
 
+    @GetMapping("/products/detail")
+    public ResponseVo<PageInfo> list(@RequestParam(required = false) String name,
+                                     @RequestParam(required = false, defaultValue="1") Integer pageNum,
+                                     @RequestParam(required = false, defaultValue="10") Integer pageSize){
+        return iProductService.searchList(name, pageNum, pageSize);
+    }
+
     @GetMapping("/products/{productId}")
     public ResponseVo<ProductDetailVo> detail(@PathVariable Integer productId){
         return iProductService.detail(productId);
+    }
+
+    @GetMapping("/products/num")
+    public ResponseVo<Integer> num(@RequestParam(required = true) Integer categoryId){
+        return iProductService.num(categoryId);
+    }
+
+    @GetMapping("/products/detail/num")
+    public ResponseVo<Integer> searchNum(@RequestParam(required = false) String name){
+        return iProductService.searchNum(name);
     }
 }

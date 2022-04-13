@@ -221,4 +221,22 @@
       </foreach>
     </if>
   </select>
+  <select id="selectByNameSet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_product
+    where status = 1 and main_image is not NULL and name like "%"#{name,jdbcType=VARCHAR}"%"
+  </select>
+  <select id="productNum" resultType="java.lang.Integer">
+    select
+    count(*)
+    from mall_product
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <select id="searchNum" resultType="java.lang.Integer">
+    select
+      count(*)
+    from mall_product
+    where status = 1 and main_image is not NULL and name like "%"#{name,jdbcType=VARCHAR}"%"
+  </select>
 </mapper>

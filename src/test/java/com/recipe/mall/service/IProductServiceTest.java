@@ -18,4 +18,10 @@ class IProductServiceTest extends MallApplicationTests {
         ResponseVo<PageInfo> responseVo = productService.list(100028, 1, 4);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
     }
+
+    @Test
+    public void searchlist(){
+        ResponseVo<PageInfo> responseVo = productService.searchList("红豆", 1, 4);
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
+    }
 }

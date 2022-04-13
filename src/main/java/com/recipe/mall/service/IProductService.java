@@ -8,4 +8,10 @@ public interface IProductService {
     ResponseVo<PageInfo> list(Integer categoryId, Integer pageNum, Integer pageSize);
 
     ResponseVo<ProductDetailVo> detail(Integer productId);
+
+    ResponseVo<Integer> num(Integer categoryId);
+
+    ResponseVo<PageInfo> searchList(String name, Integer pageNum, Integer pageSize);
+
+    ResponseVo<Integer> searchNum(String name);
 }

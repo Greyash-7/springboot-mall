@@ -60,4 +60,33 @@ public class ProductServiceImpl implements IProductService {
 
         return ResponseVo.success(productDetailVo);
     }
+
+    @Override
+    public ResponseVo<Integer> num(Integer categoryId) {
+        int productNum = productMapper.productNum(categoryId);
+        return ResponseVo.success(productNum);
+    }
+
+    @Override
+    public ResponseVo<PageInfo> searchList(String name, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> productList = productMapper.selectByNameSet(name);
+        List<ProductVo> productVoList = productList.stream()
+                .map(e -> {
+                    ProductVo productVo = new ProductVo();
+                    BeanUtils.copyProperties(e, productVo);
+                    return productVo;
+                })
+                .collect(Collectors.toList());
+
+        PageInfo pageInfo = new PageInfo(productList);
+        pageInfo.setList(productList);
+        return ResponseVo.success(pageInfo);
+    }
+
+    @Override
+    public ResponseVo<Integer> searchNum(String name) {
+        int searchNum = productMapper.searchNum(name);
+        return ResponseVo.success(searchNum);
+    }
 }
