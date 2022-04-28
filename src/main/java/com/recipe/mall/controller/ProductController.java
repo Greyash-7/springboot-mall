@@ -43,4 +43,17 @@ public class ProductController {
     public ResponseVo<Integer> searchNum(@RequestParam(required = false) String name){
         return iProductService.searchNum(name);
     }
+
+    @GetMapping("/products/favorlist")
+    public ResponseVo<PageInfo> favorList(@RequestParam(required = false, defaultValue="1") Integer pageNum,
+                                         @RequestParam(required = false, defaultValue="5") Integer pageSize){
+        return iProductService.favorList(pageNum, pageSize);
+    }
+
+    @GetMapping("/products/vegetablelist")
+    public ResponseVo<PageInfo> vegetableList(@RequestParam(required = false) String name,
+                                              @RequestParam(required = false, defaultValue="1") Integer pageNum,
+                                              @RequestParam(required = false, defaultValue="5") Integer pageSize){
+        return iProductService.vegetableList(name, pageNum, pageSize);
+    }
 }

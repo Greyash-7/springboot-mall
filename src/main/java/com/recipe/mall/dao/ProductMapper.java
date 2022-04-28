@@ -26,4 +26,8 @@ public interface ProductMapper {
     int productNum(Integer categoryId);
 
     int searchNum(String name);
+
+    List<Product> selectByFavor();
+
+    List<Product> selectByVegetable(String name);
 }

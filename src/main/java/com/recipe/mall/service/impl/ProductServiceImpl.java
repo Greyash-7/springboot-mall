@@ -89,4 +89,39 @@ public class ProductServiceImpl implements IProductService {
         int searchNum = productMapper.searchNum(name);
         return ResponseVo.success(searchNum);
     }
+
+    @Override
+    public ResponseVo<PageInfo> favorList(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> productList = productMapper.selectByFavor();
+        List<ProductVo> productVoList = productList.stream()
+                .map(e -> {
+                    ProductVo productVo = new ProductVo();
+                    BeanUtils.copyProperties(e, productVo);
+                    return productVo;
+                })
+                .collect(Collectors.toList());
+
+        PageInfo pageInfo = new PageInfo(productList);
+        pageInfo.setList(productList);
+        return ResponseVo.success(pageInfo);
+    }
+
+    @Override
+    public ResponseVo<PageInfo> vegetableList(String name, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        name = "笋";
+        List<Product> productList = productMapper.selectByVegetable(name);
+        List<ProductVo> productVoList = productList.stream()
+                .map(e -> {
+                    ProductVo productVo = new ProductVo();
+                    BeanUtils.copyProperties(e, productVo);
+                    return productVo;
+                })
+                .collect(Collectors.toList());
+
+        PageInfo pageInfo = new PageInfo(productList);
+        pageInfo.setList(productList);
+        return ResponseVo.success(pageInfo);
+    }
 }

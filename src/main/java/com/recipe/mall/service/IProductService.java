@@ -14,4 +14,8 @@ public interface IProductService {
     ResponseVo<PageInfo> searchList(String name, Integer pageNum, Integer pageSize);
 
     ResponseVo<Integer> searchNum(String name);
+
+    ResponseVo<PageInfo> favorList(Integer pageNum, Integer pageSize);
+
+    ResponseVo<PageInfo> vegetableList(String name, Integer pageNum, Integer pageSize);
 }

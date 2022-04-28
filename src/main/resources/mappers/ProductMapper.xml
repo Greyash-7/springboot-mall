@@ -239,4 +239,17 @@
     from mall_product
     where status = 1 and main_image is not NULL and name like "%"#{name,jdbcType=VARCHAR}"%"
   </select>
+  <select id="selectByFavor" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_product
+    where status = 1 and main_image is not NULL
+    order by favor desc
+  </select>
+  <select id="selectByVegetable" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_product
+    where status = 1 and main_image is not NULL and name like "%"#{name,jdbcType=VARCHAR}"%"
+  </select>
 </mapper>
