@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recipe.mall.dao.CartProductMapper">
+  <resultMap id="BaseResultMap" type="com.recipe.mall.pojo.CartProduct">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="category_type" jdbcType="VARCHAR" property="categoryType" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="subtitle" jdbcType="VARCHAR" property="subtitle" />
+    <result column="process" jdbcType="VARCHAR" property="process" />
+    <result column="main_image" jdbcType="VARCHAR" property="mainImage" />
+    <result column="favor" jdbcType="INTEGER" property="favor" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="product_selected" jdbcType="BIT" property="productSelected" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, quantity, category_type, category_id, name, subtitle, process, main_image, favor,
+    status, product_selected
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_cart_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mall_cart_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.recipe.mall.pojo.CartProduct">
+    insert into mall_cart_product (id, quantity, category_type,
+      category_id, name, subtitle,
+      process, main_image, favor,
+      status, product_selected)
+    values (#{id,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, #{categoryType,jdbcType=VARCHAR},
+      #{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
+      #{process,jdbcType=VARCHAR}, #{mainImage,jdbcType=VARCHAR}, #{favor,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, #{productSelected,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.recipe.mall.pojo.CartProduct">
+    replace into mall_cart_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="categoryType != null">
+        category_type,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="subtitle != null">
+        subtitle,
+      </if>
+      <if test="process != null">
+        process,
+      </if>
+      <if test="mainImage != null">
+        main_image,
+      </if>
+      <if test="favor != null">
+        favor,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="productSelected != null">
+        product_selected,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null">
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null">
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null">
+        #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="favor != null">
+        #{favor,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="productSelected != null">
+        #{productSelected,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.recipe.mall.pojo.CartProduct">
+    update mall_cart_product
+    <set>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null">
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null">
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null">
+        main_image = #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="favor != null">
+        favor = #{favor,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="productSelected != null">
+        product_selected = #{productSelected,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.recipe.mall.pojo.CartProduct">
+    update mall_cart_product
+    set quantity = #{quantity,jdbcType=INTEGER},
+      category_type = #{categoryType,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR},
+      main_image = #{mainImage,jdbcType=VARCHAR},
+      favor = #{favor,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      product_selected = #{productSelected,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectBysuggest" resultType="integer">
+    select
+      category_id, count(category_id)
+    from mall_cart_product
+    group by category_id
+    having count(category_id) = (select max(counts) from (select category_id, count(1) AS counts from mall_cart_product group by category_id) as temp)
+    limit 1
+  </select>
+</mapper>

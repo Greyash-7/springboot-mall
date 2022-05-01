@@ -1,6 +1,7 @@
 package com.recipe.mall.service.impl;
 
 import com.google.gson.Gson;
+import com.recipe.mall.dao.CartProductMapper;
 import com.recipe.mall.dao.ProductMapper;
 import com.recipe.mall.enums.ResponseEnum;
 import com.recipe.mall.form.CartAddForm;
@@ -28,6 +29,9 @@ public class CartServiceImpl implements ICartService {
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private CartProductMapper cartProductMapper;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -94,6 +98,12 @@ public class CartServiceImpl implements ICartService {
                         cart.getProductSelected());
                 cartProductVoList.add(cartProductVo);
 
+                //写入mysql
+                int res = cartProductMapper.insertSelective(cartProductVo);
+//                if(res == 0){
+//                    return ResponseVo.error(ERROR);
+//                }
+
                 if(!cart.getProductSelected()){
                     selectAll = false;
                 }
@@ -144,6 +154,8 @@ public class CartServiceImpl implements ICartService {
         }
 
         ops.delete(redisKey, String.valueOf(productId));
+        //mysql delete
+        cartProductMapper.deleteByPrimaryKey(productId);
 
         return list(uid);
     }
@@ -185,7 +197,8 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public ResponseVo<Integer> suggest(Integer uid) {
-        return null;
+        Integer suggestId = cartProductMapper.selectBysuggest();
+        return ResponseVo.success(suggestId);
     }
 
     private List<Cart> listForCart(Integer uid){

@@ -64,4 +64,10 @@ public class CartController {
         User user = (User) session.getAttribute(MallConst.CURRENT_USER);
         return cartService.sum(user.getId());
     }
+
+    @GetMapping("/carts/products/suggest")
+    public ResponseVo<Integer> suggest(HttpSession session) {
+        User user = (User) session.getAttribute(MallConst.CURRENT_USER);
+        return cartService.suggest(user.getId());
+    }
 }
