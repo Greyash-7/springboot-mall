@@ -84,6 +84,7 @@ public class CartServiceImpl implements ICartService {
                 CartProductVo cartProductVo = new CartProductVo(productId,
                         cart.getQuantity(),
                         product.getCategoryType(),
+                        product.getCategoryId(),
                         product.getName(),
                         product.getSubtitle(),
                         product.getProcess(),
@@ -180,6 +181,11 @@ public class CartServiceImpl implements ICartService {
                 .reduce(0, Integer::sum);
 
         return ResponseVo.success(sum);
+    }
+
+    @Override
+    public ResponseVo<Integer> suggest(Integer uid) {
+        return null;
     }
 
     private List<Cart> listForCart(Integer uid){

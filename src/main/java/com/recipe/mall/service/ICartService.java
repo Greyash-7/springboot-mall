@@ -20,4 +20,6 @@ public interface ICartService {
     ResponseVo<CartVo> unSelectAll(Integer uid);
 
     ResponseVo<Integer> sum(Integer uid);
+
+    ResponseVo<Integer> suggest(Integer uid);
 }

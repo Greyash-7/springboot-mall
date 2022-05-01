@@ -6,10 +6,11 @@ import lombok.Data;
 public class CartProductVo {
     private Integer id;
 
-    public CartProductVo(Integer id, Integer quantity, String categoryType, String name, String subtitle, String process, String mainImage, Integer favor, Integer status, Boolean productSelected) {
+    public CartProductVo(Integer id, Integer quantity, String categoryType, int categoryId, String name, String subtitle, String process, String mainImage, Integer favor, Integer status, Boolean productSelected) {
         this.id = id;
         this.quantity = quantity;
         this.categoryType = categoryType;
+        this.categoryId = categoryId;
         this.name = name;
         this.subtitle = subtitle;
         this.process = process;
@@ -22,6 +23,8 @@ public class CartProductVo {
     private Integer quantity;//数量
 
     private String categoryType;
+
+    private int categoryId;
 
     private String name;
 
