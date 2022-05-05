@@ -225,7 +225,7 @@
     select
     <include refid="Base_Column_List" />
     from mall_product
-    where status = 1 and main_image is not NULL and name like "%"#{name,jdbcType=VARCHAR}"%"
+    where status = 1 and main_image is not NULL and name like concat('%',#{name,jdbcType=VARCHAR},'%')
   </select>
   <select id="productNum" resultType="java.lang.Integer">
     select
