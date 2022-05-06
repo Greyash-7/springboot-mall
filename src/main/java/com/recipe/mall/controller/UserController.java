@@ -9,10 +9,7 @@ import com.recipe.mall.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -55,5 +52,15 @@ public class UserController {
         session.removeAttribute(MallConst.CURRENT_USER);
 
         return ResponseVo.success();
+    }
+
+    @PostMapping("/user/updatepwd")
+    public ResponseVo updatePwd(@Valid @RequestBody UserLoginForm userLoginForm,
+                                HttpSession session){
+        ResponseVo<User> userResponseVo = userService.updatePwd(userLoginForm.getUsername(), userLoginForm.getPassword());
+
+        session.setAttribute(MallConst.CURRENT_USER, userResponseVo.getData());
+
+        return userResponseVo;
     }
 }

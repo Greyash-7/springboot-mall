@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/vegetablelist")
-    public ResponseVo<PageInfo> vegetableList(@RequestParam(required = false) String name,
+    public ResponseVo<PageInfo> vegetableList(@RequestParam(required = false, defaultValue="笋") String name,
                                               @RequestParam(required = false, defaultValue="1") Integer pageNum,
                                               @RequestParam(required = false, defaultValue="5") Integer pageSize){
         return iProductService.vegetableList(name, pageNum, pageSize);

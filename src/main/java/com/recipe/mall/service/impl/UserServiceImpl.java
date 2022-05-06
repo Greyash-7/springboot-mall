@@ -64,4 +64,15 @@ public class UserServiceImpl implements IUserService {
         return ResponseVo.success(user);
     }
 
+    @Override
+    public ResponseVo<User> updatePwd(String username, String password) {
+        User user = userMapper.selectByUsername(username);
+        if (user == null) {
+            //用户不存在（返回：用户名或密码错误 ）
+            return ResponseVo.error(USERNAME_OR_PASSWORD_ERROR);
+        }
+        int check = userMapper.changePassword(username, DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8)));
+
+        return ResponseVo.success();
+    }
 }

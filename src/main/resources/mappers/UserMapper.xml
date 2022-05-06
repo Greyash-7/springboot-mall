@@ -167,4 +167,9 @@
     from mall_user
     where username = #{username,jdbcType=VARCHAR}
   </select>
+  <update id="changePassword" parameterType="com.recipe.mall.pojo.User">
+    update mall_user
+    set password = #{password,jdbcType=VARCHAR}
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
 </mapper>

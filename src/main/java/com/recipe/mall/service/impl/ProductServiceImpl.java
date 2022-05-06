@@ -110,7 +110,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ResponseVo<PageInfo> vegetableList(String name, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        name = "笋";
+//        name = "笋";
         List<Product> productList = productMapper.selectByVegetable(name);
         List<ProductVo> productVoList = productList.stream()
                 .map(e -> {

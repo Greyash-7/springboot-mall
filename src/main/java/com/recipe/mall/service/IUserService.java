@@ -14,4 +14,6 @@ public interface IUserService {
      * 登录
      */
     ResponseVo<User> login(String username, String password);
+
+    ResponseVo<User> updatePwd(String username, String password);
 }
