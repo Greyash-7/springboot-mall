@@ -88,4 +88,16 @@ public class CategoryServiceImpl implements ICategoryService {
         BeanUtils.copyProperties(category, categoryVo);
         return categoryVo;
     }
+
+    @Override
+    public ResponseVo<Integer> add(String name) {
+        int i = categoryMapper.insertByName(name);
+        return ResponseVo.success(i);
+    }
+
+    @Override
+    public ResponseVo<Integer> delete(String name) {
+        int i = categoryMapper.deleteByName(name);
+        return ResponseVo.success(i);
+    }
 }

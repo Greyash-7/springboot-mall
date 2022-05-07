@@ -18,4 +18,8 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> selectAll();
+
+    int insertByName(String name);
+
+    int deleteByName(String name);
 }

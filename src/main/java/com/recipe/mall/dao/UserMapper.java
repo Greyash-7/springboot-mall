@@ -2,6 +2,8 @@ package com.recipe.mall.dao;
 
 import com.recipe.mall.pojo.User;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -22,4 +24,6 @@ public interface UserMapper {
     User selectByUsername(String username);
 
     int changePassword(String username, String password);
+
+    List<User> selectAll();
 }

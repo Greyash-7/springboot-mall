@@ -3,6 +3,8 @@ package com.recipe.mall.service;
 import com.recipe.mall.pojo.User;
 import com.recipe.mall.vo.ResponseVo;
 
+import java.util.List;
+
 public interface IUserService {
     /**
      * 注册
@@ -16,4 +18,6 @@ public interface IUserService {
     ResponseVo<User> login(String username, String password);
 
     ResponseVo<User> updatePwd(String username, String password);
+
+    ResponseVo<List<User>> selectAll();
 }

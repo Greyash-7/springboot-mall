@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static com.recipe.mall.enums.ResponseEnum.*;
 
@@ -74,5 +75,13 @@ public class UserServiceImpl implements IUserService {
         int check = userMapper.changePassword(username, DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8)));
 
         return ResponseVo.success();
+    }
+
+    @Override
+    public ResponseVo<List<User>> selectAll() {
+        List<User> users = userMapper.selectAll();
+
+
+        return ResponseVo.success(users);
     }
 }

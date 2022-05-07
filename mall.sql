@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS `mall_category`;
 CREATE TABLE `mall_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别Id',
-  `parent_id` int(11) DEFAULT NULL COMMENT '父类别id当id=0时说明是根节点,一级类别',
+  `parent_id` int(11) DEFAULT '0' COMMENT '父类别id当id=0时说明是根节点,一级类别',
   `name` varchar(50) DEFAULT NULL COMMENT '类别名称',
   `status` tinyint(1) DEFAULT '1' COMMENT '类别状态1-正常,2-已废弃',
   `sort_order` int(4) DEFAULT '1' COMMENT '排序编号,同类展示顺序,数值相等则自然排序',

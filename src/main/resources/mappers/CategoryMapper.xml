@@ -120,4 +120,12 @@
     from mall_category
     where status = 1
   </select>
+  <insert id="insertByName" parameterType="java.lang.String" useGeneratedKeys="true">
+    insert into mall_category (name)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+  <delete id="deleteByName" parameterType="java.lang.String">
+    delete from mall_category
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
 </mapper>

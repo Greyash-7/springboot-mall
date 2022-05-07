@@ -172,4 +172,10 @@
     set password = #{password,jdbcType=VARCHAR}
     where username = #{username,jdbcType=VARCHAR}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_user
+    where role = 1
+  </select>
 </mapper>
